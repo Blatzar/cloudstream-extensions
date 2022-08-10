@@ -1,3 +1,7 @@
+dependencies {
+    implementation(project(mapOf("path" to ":VidstreamProviderTemplate")))
+    implementation(project(mapOf("path" to ":VidEmbedProvider")))
+}
 // use an integer for version numbers
 version = 1
 

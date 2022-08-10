@@ -10,5 +10,12 @@ class WatchAsianProviderPlugin: Plugin() {
     override fun load(context: Context) {
         // All providers should be added in this manner. Please don't edit the providers list directly.
         registerMainAPI(WatchAsianProvider())
+        registerExtractorAPI(XStreamCdn())
+        registerExtractorAPI(LayarKaca())
+        registerExtractorAPI(DBfilm())
+        registerExtractorAPI(Luxubu())
+        registerExtractorAPI(FEmbed())
+        registerExtractorAPI(Fplayer())
+        registerExtractorAPI(FeHD())
     }
 }

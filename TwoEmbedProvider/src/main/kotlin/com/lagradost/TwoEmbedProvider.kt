@@ -2,6 +2,8 @@ package com.lagradost
 
 import android.util.Log
 import com.fasterxml.jackson.annotation.JsonProperty
+import com.lagradost.SflixProvider.Companion.extractRabbitStream
+import com.lagradost.SflixProvider.Companion.runSflixExtractorVerifierJob
 import com.lagradost.cloudstream3.APIHolder.getCaptchaToken
 import com.lagradost.cloudstream3.SubtitleFile
 import com.lagradost.cloudstream3.TvType
@@ -9,8 +11,6 @@ import com.lagradost.cloudstream3.apmap
 import com.lagradost.cloudstream3.app
 import com.lagradost.cloudstream3.metaproviders.TmdbLink
 import com.lagradost.cloudstream3.metaproviders.TmdbProvider
-import com.lagradost.cloudstream3.movieproviders.SflixProvider.Companion.extractRabbitStream
-import com.lagradost.cloudstream3.movieproviders.SflixProvider.Companion.runSflixExtractorVerifierJob
 import com.lagradost.cloudstream3.utils.AppUtils.parseJson
 import com.lagradost.cloudstream3.utils.ExtractorLink
 import com.lagradost.cloudstream3.utils.loadExtractor

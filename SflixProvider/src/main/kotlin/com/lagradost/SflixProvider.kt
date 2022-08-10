@@ -8,9 +8,7 @@ import com.lagradost.cloudstream3.APIHolder.unixTimeMS
 import com.lagradost.cloudstream3.LoadResponse.Companion.addActors
 import com.lagradost.cloudstream3.LoadResponse.Companion.addDuration
 import com.lagradost.cloudstream3.LoadResponse.Companion.addTrailer
-import com.lagradost.cloudstream3.animeproviders.ZoroProvider
-import com.lagradost.cloudstream3.mvvm.normalSafeApiCall
-import com.lagradost.cloudstream3.mvvm.safeApiCall
+//import com.lagradost.cloudstream3.animeproviders.ZoroProvider
 import com.lagradost.cloudstream3.mvvm.suspendSafeApiCall
 import com.lagradost.cloudstream3.utils.AppUtils.parseJson
 import com.lagradost.cloudstream3.utils.AppUtils.tryParseJson
@@ -678,19 +676,19 @@ open class SflixProvider : MainAPI() {
 
             var sid: String? = null
             if (useSidAuthentication && extractorData != null) {
-                negotiateNewSid(extractorData)?.also {
+                negotiateNewSid(extractorData)?.also { pollingData ->
                     app.post(
-                        "$extractorData&t=${generateTimeStamp()}&sid=${it.sid}",
+                        "$extractorData&t=${generateTimeStamp()}&sid=${pollingData.sid}",
                         requestBody = "40".toRequestBody(),
                         timeout = 60
                     )
                     val text = app.get(
-                        "$extractorData&t=${generateTimeStamp()}&sid=${it.sid}",
+                        "$extractorData&t=${generateTimeStamp()}&sid=${pollingData.sid}",
                         timeout = 60
                     ).text.replaceBefore("{", "")
 
                     sid = parseJson<PollingData>(text).sid
-                    ioSafe { app.get("$extractorData&t=${generateTimeStamp()}&sid=${it.sid}") }
+                    ioSafe { app.get("$extractorData&t=${generateTimeStamp()}&sid=${pollingData.sid}") }
                 }
             }
 
@@ -738,7 +736,7 @@ open class SflixProvider : MainAPI() {
                     )
                         ?.forEach {
                             // Sets Zoro SID used for video loading
-                            (this as? ZoroProvider)?.sid?.set(it.url.hashCode(), sid)
+//                            (this as? ZoroProvider)?.sid?.set(it.url.hashCode(), sid)
                             callback(it)
                         }
                 }

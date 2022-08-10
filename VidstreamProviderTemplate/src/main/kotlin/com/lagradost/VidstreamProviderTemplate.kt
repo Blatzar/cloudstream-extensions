@@ -1,6 +1,7 @@
 package com.lagradost
 
 import com.lagradost.cloudstream3.*
+import com.lagradost.cloudstream3.extractors.Vidstream
 //import com.lagradost.cloudstream3.animeproviders.GogoanimeProvider.Companion.extractVidstream
 //import com.lagradost.cloudstream3.extractors.Vidstream
 import com.lagradost.cloudstream3.utils.ExtractorLink
@@ -274,12 +275,12 @@ open class VidstreamProviderTemplate : MainAPI() {
 //        )
         // In this case the video player is a vidstream clone and can be handled by the vidstream extractor.
         // This case is a both unorthodox and you normally do not call extractors as they detect the url returned and does the rest.
-//        val vidstreamObject = Vidstream(vidstreamExtractorUrl ?: mainUrl)
+        val vidstreamObject = Vidstream(vidstreamExtractorUrl ?: mainUrl)
         // https://vidembed.cc/streaming.php?id=MzUwNTY2&... -> MzUwNTY2
         val id = Regex("""id=([^&]*)""").find(iframeLink)?.groupValues?.get(1)
 
         if (id != null) {
-//            vidstreamObject.getUrl(id, isCasting, subtitleCallback, callback)
+            vidstreamObject.getUrl(id, isCasting, subtitleCallback, callback)
         }
 
         val html = app.get(fixUrl(iframeLink)).text

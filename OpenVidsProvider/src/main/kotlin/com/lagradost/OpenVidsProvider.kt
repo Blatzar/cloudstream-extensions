@@ -2,7 +2,7 @@ package com.lagradost
 
 import com.fasterxml.jackson.annotation.JsonProperty
 import com.lagradost.cloudstream3.*
-import com.lagradost.cloudstream3.animeproviders.GogoanimeProvider.Companion.extractVidstream
+import com.lagradost.cloudstream3.extractors.Vidstream
 import com.lagradost.cloudstream3.metaproviders.TmdbLink
 import com.lagradost.cloudstream3.metaproviders.TmdbProvider
 import com.lagradost.cloudstream3.utils.AppUtils.parseJson
@@ -115,7 +115,7 @@ class OpenVidsProvider:TmdbProvider() {
         listservers.apmap { links ->
             if (links.contains("membed")) {
                 val membed = VidEmbedProvider()
-                extractVidstream(
+                Vidstream.extractVidstream(
                     links,
                     this.name,
                     callback,

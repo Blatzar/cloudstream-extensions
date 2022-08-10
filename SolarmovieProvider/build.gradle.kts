@@ -1,3 +1,6 @@
+dependencies {
+    implementation(project(mapOf("path" to ":SflixProvider")))
+}
 // use an integer for version numbers
 version = 1
 

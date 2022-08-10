@@ -1,7 +1,8 @@
 package com.lagradost
 
 import com.lagradost.cloudstream3.*
-import com.lagradost.cloudstream3.animeproviders.GogoanimeProvider.Companion.extractVidstream
+import com.lagradost.cloudstream3.extractors.Vidstream
+//import com.lagradost.cloudstream3.animeproviders.GogoanimeProvider.Companion.extractVidstream
 import com.lagradost.cloudstream3.utils.ExtractorLink
 import com.lagradost.cloudstream3.utils.loadExtractor
 
@@ -200,7 +201,7 @@ class DramaSeeProvider : MainAPI() {
             val iv = "9262859232435825"
             val secretKey = "93422192433952489752342908585752"
             val secretDecryptKey = "93422192433952489752342908585752"
-            extractVidstream(
+            Vidstream.extractVidstream(
                 iframe.url,
                 this.name,
                 callback,

@@ -2,11 +2,12 @@ package com.lagradost
 
 import com.lagradost.cloudstream3.SubtitleFile
 import com.lagradost.cloudstream3.TvType
-import com.lagradost.cloudstream3.extractors.VidSrcExtractor
+//import com.lagradost.cloudstream3.extractors.VidSrcExtractor
 import com.lagradost.cloudstream3.metaproviders.TmdbLink
 import com.lagradost.cloudstream3.metaproviders.TmdbProvider
 import com.lagradost.cloudstream3.utils.AppUtils.parseJson
 import com.lagradost.cloudstream3.utils.ExtractorLink
+import com.lagradost.cloudstream3.utils.loadExtractor
 
 class VidSrcProvider : TmdbProvider() {
     override val apiName = "VidSrc"
@@ -19,9 +20,9 @@ class VidSrcProvider : TmdbProvider() {
         TvType.TvSeries,
     )
 
-    companion object {
-        val extractor = VidSrcExtractor()
-    }
+//    companion object {
+//        val extractor = VidSrcExtractor()
+//    }
 
     override suspend fun loadLinks(
         data: String,
@@ -44,7 +45,8 @@ class VidSrcProvider : TmdbProvider() {
                 "$mainUrl/embed/$suffix"
         }
 
-        extractor.getSafeUrl(embedUrl, null, subtitleCallback, callback)
+        loadExtractor(embedUrl, null, subtitleCallback, callback)
+//        extractor.getSafeUrl(embedUrl, null, subtitleCallback, callback)
 
         return true
     }
